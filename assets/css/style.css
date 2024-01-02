@@ -43,8 +43,8 @@ button {
 
 }
 
-button:hover{
-background-color: #ca31df;
+button:hover {
+  background-color: #ca31df;
 }
 
 header {
@@ -74,7 +74,7 @@ section {
 
 .large-font {
   font-size: 3.5em;
-  text-align:center;
+  text-align: center;
 }
 
 .timer {

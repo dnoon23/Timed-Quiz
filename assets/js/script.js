@@ -29,6 +29,7 @@ var d5 = document.querySelector('.d5');
 var time = document.querySelector(".timer-count");
 var correct = document.querySelector(".correct");
 var wrong = document.querySelector(".wrong");
+var finish = document.querySelector(".finish")
 var timeUp = document.querySelector(".timeUp");
 var timeText = document.querySelector(".timer-text");
 var entry = document.querySelector(".entry");
@@ -50,14 +51,15 @@ correct.style.display = 'none';
 wrong.style.display = 'none';
 timeUp.style.display = 'none';
 entry.style.display = 'none';
+finish.style.display = 'none';
 
 //Starts timer and ends the game and the timer when either time is 0 or last question is answered
 function setTime() {
-
   var timerInterval = setInterval(function () {
     secondsLeft--;
     time.textContent = secondsLeft;
-//Ends game if timer is 0
+
+    //Ends game if timer is 0
     if (secondsLeft === 0) {
       clearInterval(timerInterval);
       questions1.style.display = 'none';
@@ -72,38 +74,39 @@ function setTime() {
       score = secondsLeft;
       localStorage.setItem("score", score);
     }
-//ends game and stores the time when last answer is selected
+    //ends game and stores the time when last answer is selected and displays it on the next screen
     else if (a5.addEventListener("click", function () {
       clearInterval(timerInterval);
       time.textContent = secondsLeft;
       score = secondsLeft;
       localStorage.setItem("score", score);
-    })) {}
+      var scoreTi = localStorage.getItem("score");
+      document.querySelector('.finish').textContent = "Your score was " + scoreTi + " seconds.";
+    })) { }
     else if (b5.addEventListener("click", function () {
       clearInterval(timerInterval);
       time.textContent = secondsLeft;
       score = secondsLeft;
       localStorage.setItem("score", score);
-    })) {
-
-    }
+      var scoreTi = localStorage.getItem("score");
+      document.querySelector('.finish').textContent = "Your score was " + scoreTi + " seconds.";
+    })) { }
     else if (c5.addEventListener("click", function () {
       clearInterval(timerInterval);
       time.textContent = secondsLeft;
       score = secondsLeft;
       localStorage.setItem("score", score);
-    })) {
-
-    }
+      var scoreTi = localStorage.getItem("score");
+      document.querySelector('.finish').textContent = "Your score was " + scoreTi + " seconds.";
+    })) { }
     else if (d5.addEventListener("click", function () {
       clearInterval(timerInterval);
       time.textContent = secondsLeft;
       score = secondsLeft;
       localStorage.setItem("score", score);
-    })) {
-
-    }
-
+      var scoreTi = localStorage.getItem("score");
+      document.querySelector('.finish').textContent = "Your score was " + scoreTi + " seconds.";
+    })) { }
   }, 1000);
 
   secondsLeft = 100;
@@ -116,7 +119,7 @@ start.addEventListener("click", function () {
   questions1.style.display = "block";
   timeText.style.display = 'block';
   setTime()
-})
+});
 
 //Question 1 answers.  Tells if answer is right or wrong, hides question 1, reveals question 2, and if answer is wrong subtracts 5 seconds
 a1.addEventListener("click", function () {
@@ -125,37 +128,34 @@ a1.addEventListener("click", function () {
   correct.style.display = 'block';
   wrong.style.display = 'none';
 
-}
-)
+});
 
 b1.addEventListener("click", function () {
   questions1.style.display = 'none';
   questions2.style.display = 'block';
   correct.style.display = 'none';
   wrong.style.display = 'block';
-  secondsLeft-=5;
-}
-)
+  secondsLeft -= 5;
+
+});
 
 c1.addEventListener("click", function () {
   questions1.style.display = 'none';
   questions2.style.display = 'block';
   correct.style.display = 'none';
   wrong.style.display = 'block';
-  secondsLeft-=5;
+  secondsLeft -= 5;
 
-}
-)
+});
 
 d1.addEventListener("click", function () {
   questions1.style.display = 'none';
   questions2.style.display = 'block';
   correct.style.display = 'none';
   wrong.style.display = 'block';
-  secondsLeft-=5;
+  secondsLeft -= 5;
 
-}
-)
+});
 
 //Question 2 answers.  Tells if answer is right or wrong, hides question 2, reveals question 3, and if answer is wrong subtracts 5 seconds
 a2.addEventListener("click", function () {
@@ -163,20 +163,18 @@ a2.addEventListener("click", function () {
   questions3.style.display = 'block';
   correct.style.display = 'none';
   wrong.style.display = 'block';
-  secondsLeft-=5;
+  secondsLeft -= 5;
 
-}
-)
+});
 
 b2.addEventListener("click", function () {
   questions2.style.display = 'none';
   questions3.style.display = 'block';
   correct.style.display = 'none';
   wrong.style.display = 'block';
-  secondsLeft-=5;
+  secondsLeft -= 5;
 
-}
-)
+});
 
 c2.addEventListener("click", function () {
   questions2.style.display = 'none';
@@ -184,18 +182,16 @@ c2.addEventListener("click", function () {
   correct.style.display = 'block';
   wrong.style.display = 'none';
 
-}
-)
+});
 
 d2.addEventListener("click", function () {
   questions2.style.display = 'none';
   questions3.style.display = 'block';
   correct.style.display = 'none';
   wrong.style.display = 'block';
-  secondsLeft-=5;
+  secondsLeft -= 5;
 
-}
-)
+});
 
 //Question 3 answers.  Tells if answer is right or wrong, hides question 3, reveals question 4, and if answer is wrong subtracts 5 seconds
 a3.addEventListener("click", function () {
@@ -204,38 +200,34 @@ a3.addEventListener("click", function () {
   correct.style.display = 'block';
   wrong.style.display = 'none';
 
-}
-)
+});
 
 b3.addEventListener("click", function () {
   questions3.style.display = 'none';
   questions4.style.display = 'block';
   correct.style.display = 'none';
   wrong.style.display = 'block';
-  secondsLeft-=5;
+  secondsLeft -= 5;
 
-}
-)
+});
 
 c3.addEventListener("click", function () {
   questions3.style.display = 'none';
   questions4.style.display = 'block';
   correct.style.display = 'none';
   wrong.style.display = 'block';
-  secondsLeft-=5;
+  secondsLeft -= 5;
 
-}
-)
+});
 
 d3.addEventListener("click", function () {
   questions3.style.display = 'none';
   questions4.style.display = 'block';
   correct.style.display = 'none';
   wrong.style.display = 'block';
-  secondsLeft-=5;
+  secondsLeft -= 5;
 
-}
-)
+});
 
 //Question 4 answers.  Tells if answer is right or wrong, hides question 4, reveals question 5, and if answer is wrong subtracts 5 seconds
 a4.addEventListener("click", function () {
@@ -243,30 +235,27 @@ a4.addEventListener("click", function () {
   questions5.style.display = 'block';
   correct.style.display = 'none';
   wrong.style.display = 'block';
-  secondsLeft-=5;
+  secondsLeft -= 5;
 
-}
-)
+});
 
 b4.addEventListener("click", function () {
   questions4.style.display = 'none';
   questions5.style.display = 'block';
   correct.style.display = 'none';
   wrong.style.display = 'block';
-  secondsLeft-=5;
+  secondsLeft -= 5;
 
-}
-)
+});
 
 c4.addEventListener("click", function () {
   questions4.style.display = 'none';
   questions5.style.display = 'block';
   correct.style.display = 'none';
   wrong.style.display = 'block';
-  secondsLeft-=5;
+  secondsLeft -= 5;
 
-}
-)
+});
 
 d4.addEventListener("click", function () {
   questions4.style.display = 'none';
@@ -274,8 +263,7 @@ d4.addEventListener("click", function () {
   correct.style.display = 'block';
   wrong.style.display = 'none';
 
-}
-)
+});
 
 //Question 5 answers.  Tells if answer is right or wrong, hides question 5, reveals results page, and if answer is wrong subtracts 5 seconds
 a5.addEventListener("click", function () {
@@ -283,45 +271,44 @@ a5.addEventListener("click", function () {
   entry.style.display = 'block';
   correct.style.display = 'none';
   wrong.style.display = 'block';
-  secondsLeft-=5;
+  secondsLeft -= 5;
+  finish.style.display = 'block';
 
-}
-)
+});
 
 b5.addEventListener("click", function () {
   questions5.style.display = 'none';
   entry.style.display = 'block';
   correct.style.display = 'none';
   wrong.style.display = 'block';
-  secondsLeft-=5;
+  secondsLeft -= 5;
+  finish.style.display = 'block';
 
-}
-)
+});
 
 c5.addEventListener("click", function () {
   questions5.style.display = 'none';
   entry.style.display = 'block';
   correct.style.display = 'block';
   wrong.style.display = 'none';
+  finish.style.display = 'block';
 
-}
-)
+});
 
 d5.addEventListener("click", function () {
   questions5.style.display = 'none';
   entry.style.display = 'block';
   correct.style.display = 'none';
   wrong.style.display = 'block';
-  secondsLeft-=5;
+  secondsLeft -= 5;
+  finish.style.display = 'block';
 
-}
-)
+});
 
 //Addes functionality to the results page.  Stores the initials that are entered and displayes the initials paired with the score on the next page
 scoreButton.addEventListener("click", function (event) {
   event.preventDefault();
   localStorage.setItem("initials", initials.value);
-  localStorage.getItem("score");
   var scoreIn = localStorage.getItem("initials");
   var scoreTi = localStorage.getItem("score");
   document.querySelector('.scoreIn').textContent = scoreIn + " : " + scoreTi + " seconds";
@@ -329,8 +316,9 @@ scoreButton.addEventListener("click", function (event) {
   wrong.style.display = 'none';
   entry.style.display = 'none';
   timeUp.style.display = 'none';
+  finish.style.display = 'none';
   end.style.display = 'block';
-})
+});
 
 //Addes functionality to the reset button.  Resets the page to the start and resets timer
 reset.addEventListener("click", function () {
@@ -343,9 +331,9 @@ reset.addEventListener("click", function () {
   entry.style.display = 'none';
   timeText.style.display = 'none';
   time.textContent = 100;
-})
+});
 
 //Clears scores by clicking clear score button
-clear.addEventListener("click", function(){
+clear.addEventListener("click", function () {
   document.querySelector('.scoreIn').textContent = "";
-})
+});
