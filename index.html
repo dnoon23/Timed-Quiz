@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <!-- Page Title -->
   <title>Timed Quiz</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,13 +10,14 @@
 </head>
 
 <body>
+  <!-- Timer -->
   <div class="timer">
     <div class="timer-text">
       <div class="timer-count">100</div>
       <div>seconds remaining</div>
     </div>
   </div>
-
+  <!-- Intro with start button -->
   <header>
     <div class="large-font">Timed Quiz</div>
     <h1 class="intro">To start the quiz please press the start button. Read the question and select the best answer from
@@ -24,6 +26,7 @@
   </header>
 
   <main>
+    <!-- Question 1 with answers -->
     <div class="questions1">
       <h1>Question 1</h1>
       <div>
@@ -33,6 +36,7 @@
         <button class="d1">A</button>
       </div>
     </div>
+    <!-- Question 2 with answers -->
     <div class="questions2">
       <h1>Question 2</h1>
       <div>
@@ -42,6 +46,7 @@
         <button class="d2">A</button>
       </div>
     </div>
+    <!-- Question 3 with answers -->
     <div class="questions3">
       <h1>Question 3</h1>
       <div>
@@ -51,6 +56,7 @@
         <button class="d3">A</button>
       </div>
     </div>
+    <!-- Question 4 with answers -->
     <div class="questions4">
       <h1>Question 4</h1>
       <div>
@@ -60,6 +66,7 @@
         <button class="d4">A</button>
       </div>
     </div>
+    <!-- Question 5 with answers -->
     <div class="questions5">
       <h1>Question 5</h1>
       <div>
@@ -69,15 +76,18 @@
         <button class="d5">A</button>
       </div>
     </div>
+    <!-- Notifications for user -->
     <h2 class="correct">CORRECT!!!</h2>
     <h2 class="wrong">WRONG!!!</h2>
     <h2 class="timeUp">TIME'S UP!!!</h2>
     <h2 class="finish"></h2>
+    <!-- Initials input field -->
     <section class="entry">
       <form>
         <label>Initials: </label><input class="initials"><br><button class="score-button">Submit</button>
       </form>
     </section>
+    <!-- Score page with reset and clear buttons -->
     <section class="end">
       <h2>Scores:</h2>
       <h3 class="scoreIn"></h3>
@@ -88,9 +98,4 @@
   </main>
   <script src="assets/js/script.js"></script>
 </body>
-
-<footer>
-
-</footer>
-
 </html>

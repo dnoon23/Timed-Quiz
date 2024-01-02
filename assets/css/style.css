@@ -1,7 +1,9 @@
+/* Default page settings */
 * {
   box-sizing: border-box;
 }
 
+/* Sets properties of elements in under the body tag */
 body {
   font-family: Arial;
   margin: 0;
@@ -11,10 +13,12 @@ body {
   justify-content: flex-start;
 }
 
+/* Makes fount in form tag larger */
 form {
   font-size: larger;
 }
 
+/* Sets button characteristics */
 button {
   background: #721b7e;
   border-radius: 8px;
@@ -28,6 +32,7 @@ button {
   margin-top: 0.6em;
 }
 
+/* Changes characteristics of reset and clear buttons */
 .reset-button {
   font-size: 15px;
   height: 30px;
@@ -43,16 +48,19 @@ button {
 
 }
 
+/* Changes colors of buttons so user can see what button they are hovering over */
 button:hover {
   background-color: #ca31df;
 }
 
+/* Sets characteristics of elements in header */
 header {
   display: block;
   padding: 40px;
   text-align: center;
 }
 
+/* Sets up the elements in the main section where the questions will show up */
 main {
   display: flex;
   align-items: center;
@@ -60,11 +68,13 @@ main {
   justify-content: space-around;
 }
 
+/* Changes the characteristics of the buttons for the question answers in the main section */
 main div button {
   display: block;
   width: 100%;
 }
 
+/* Sets up elements under the section tag */
 section {
   flex: 0 auto;
   padding: 8px;
@@ -72,11 +82,13 @@ section {
   border-radius: 8px;
 }
 
+/* Makes some font larger */
 .large-font {
   font-size: 3.5em;
   text-align: center;
 }
 
+/* Changes the look and position of the timer */
 .timer {
   height: 100px;
   padding: 10px;
@@ -92,18 +104,13 @@ section {
   main {
     flex-direction: column;
   }
-
-  .word-guess,
-  .results {
-    width: 90vw;
   }
 
   section {
-    background-color: white;
     margin: 20px auto;
     width: auto;
   }
-}
+
 
 @media screen and (max-width: 504px) {
   .large-font {
