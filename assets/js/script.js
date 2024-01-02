@@ -1,4 +1,4 @@
-var header = document.getElementsByTagName("header");
+//Variables set up to be able to select and alter what is displayed on the webpage
 var start = document.querySelector(".start");
 var instruct = document.querySelector(".intro");
 var questions1 = document.querySelector('.questions1');
@@ -30,15 +30,11 @@ var time = document.querySelector(".timer-count");
 var correct = document.querySelector(".correct");
 var wrong = document.querySelector(".wrong");
 var timeText = document.querySelector(".timer-text");
-var losses = document.querySelector(".lose");
+var entry = document.querySelector(".entry");
+var initials = document.querySelector(".initials");
+var scoreButton = document.querySelector(".score-button");
 var reset = document.querySelector(".reset-button");
 var end = document.querySelector(".end");
-
-
-var lose = localStorage.getItem("lose");
-
-
-var secondsLeft = 10;
 
 questions1.style.display = 'none';
 questions2.style.display = 'none';
@@ -49,7 +45,54 @@ timeText.style.display = 'none';
 end.style.display = 'none';
 correct.style.display = 'none';
 wrong.style.display = 'none';
+entry.style.display = 'none';
 
+
+function setTime() {
+
+  var timerInterval = setInterval(function() {
+    secondsLeft--;
+    time.textContent = secondsLeft;
+
+    if(secondsLeft === 0) {
+      clearInterval(timerInterval);
+
+      score = secondsLeft;
+      localStorage.setItem("score", score);
+    }
+    else if(a5.addEventListener("click", function(){
+      clearInterval(timerInterval);
+      score = secondsLeft;
+      localStorage.setItem("score", score);
+    })){     
+
+  }
+    else if(b5.addEventListener("click", function(){
+      clearInterval(timerInterval);
+      score = secondsLeft;
+      localStorage.setItem("score", score);
+    })){
+
+    }
+    else if(c5.addEventListener("click", function(){
+      clearInterval(timerInterval);
+      score = secondsLeft;
+      localStorage.setItem("score", score);
+    })){
+
+    }
+    else if(d5.addEventListener("click", function(){
+      clearInterval(timerInterval);
+      score = secondsLeft;
+      localStorage.setItem("score", score);
+    })){
+
+    }
+
+  }, 100);
+  secondsLeft = 100;
+
+}
 
 start.addEventListener("click", function() { 
 start.style.display = 'none';
@@ -58,24 +101,7 @@ questions1.style.display = "block";
 timeText.style.display = 'block';
 
 
-  function setTime() {
 
-    var timerInterval = setInterval(function() {
-      secondsLeft--;
-      time.textContent = secondsLeft;
-  
-      if(secondsLeft === -1) {
-        clearInterval(timerInterval);
-        // sendMessage();
-        lose++;
-        // losses.textContent = lose;
-        localStorage.setItem("lose", lose);
-      }
-  
-    }, 100);
-    secondsLeft = 10;
-
-  }
   setTime()
 })
 
@@ -230,7 +256,7 @@ d4.addEventListener("click", function(){
 //Question 5 answers
 a5.addEventListener("click", function(){
   questions5.style.display = 'none';
-  end.style.display = 'block';
+  entry.style.display = 'block';
   correct.style.display = 'none';
   wrong.style.display = 'block';
 
@@ -239,7 +265,7 @@ a5.addEventListener("click", function(){
 
 b5.addEventListener("click", function(){
   questions5.style.display = 'none';
-  end.style.display = 'block';
+  entry.style.display = 'block';
   correct.style.display = 'none';
   wrong.style.display = 'block';
 
@@ -248,7 +274,7 @@ b5.addEventListener("click", function(){
 
 c5.addEventListener("click", function(){
   questions5.style.display = 'none';
-  end.style.display = 'block';
+  entry.style.display = 'block';
   correct.style.display = 'block';
   wrong.style.display = 'none';
 
@@ -257,12 +283,25 @@ c5.addEventListener("click", function(){
 
 d5.addEventListener("click", function(){
   questions5.style.display = 'none';
-  end.style.display = 'block';
+  entry.style.display = 'block';
   correct.style.display = 'none';
   wrong.style.display = 'block';
 
 }
 )
+
+scoreButton.addEventListener("click", function(event){
+  event.preventDefault();
+  localStorage.setItem("initials", initials.value);
+  localStorage.getItem("score");
+  var scoreIn = localStorage.getItem("initials");
+  var scoreTi = localStorage.getItem("score");
+  document.querySelector('.scoreIn').textContent = scoreIn + " : " + scoreTi + " seconds";
+  correct.style.display = 'none';
+  wrong.style.display = 'none';
+  entry.style.display = 'none';
+  end.style.display = 'block';
+})
 
 
 reset.addEventListener("click", function(){
@@ -272,11 +311,8 @@ reset.addEventListener("click", function(){
   end.style.display = 'none';
   correct.style.display = 'none';
   wrong.style.display = 'none';
-  time.textContent = 10;
+  entry.style.display = 'none';
+  timeText.style.display = 'none';
+  time.textContent = 100;
 })
 
-function sendMessage() {
-  // timeText.textContent= '';
-  time.textContent = "GAME OVER ";
-}
-// setTime()
