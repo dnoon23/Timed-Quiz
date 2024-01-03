@@ -83,15 +83,14 @@
     <h2 class="finish"></h2>
     <!-- Initials input field -->
     <section class="entry">
-      <form>
-        <label>Initials: </label><input class="initials"><br><button class="score-button">Submit</button>
+      <form id="initials-form" method="POST">
+        <label>Initials: </label><input class="initials" minlength = "1" maxlength = "3"><br><button class="score-button">Submit</button>
       </form>
     </section>
     <!-- Score page with reset and clear buttons -->
     <section class="end">
       <h2>Scores:</h2>
-      <h3 class="scoreIn"></h3>
-      <h3 class="scoreTi"></h3>
+      <ul id="high-score-list"></ul>
       <button class="reset-button">Retry</button>
       <button class="clear-button">Clear Highscores</button>
     </section>

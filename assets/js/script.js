@@ -35,9 +35,13 @@ var timeText = document.querySelector(".timer-text");
 var entry = document.querySelector(".entry");
 var initials = document.querySelector(".initials");
 var scoreButton = document.querySelector(".score-button");
+var initialsForm = document.querySelector("#initials-form");
+var scoreList = document.querySelector("#high-score-list");
 var reset = document.querySelector(".reset-button");
 var clear = document.querySelector(".clear-button");
 var end = document.querySelector(".end");
+
+
 
 //Hides all elements other then the start of the game when the page is launched
 questions1.style.display = 'none';
@@ -307,17 +311,26 @@ d5.addEventListener("click", function () {
 
 //Addes functionality to the results page.  Stores the initials that are entered and displayes the initials paired with the score on the next page
 scoreButton.addEventListener("click", function (event) {
+  if(initials.value != ''){
   event.preventDefault();
   localStorage.setItem("initials", initials.value);
-  var scoreIn = localStorage.getItem("initials");
-  var scoreTi = localStorage.getItem("score");
-  document.querySelector('.scoreIn').textContent = scoreIn + " : " + scoreTi + " seconds";
+  var scoreIn = localStorage.getItem('initials');
+  var scoreTi = localStorage.getItem('score');
+  var li = document.createElement("li");
+  li.textContent = scoreIn + ' ' + scoreTi;
+  scoreList.appendChild(li);
   correct.style.display = 'none';
   wrong.style.display = 'none';
   entry.style.display = 'none';
   timeUp.style.display = 'none';
   finish.style.display = 'none';
   end.style.display = 'block';
+  }
+  else{
+    event.preventDefault();
+    wrong.textContent = 'Please enter initials of length of leght 1 to 3 characters';
+    return;
+  }
 });
 
 //Addes functionality to the reset button.  Resets the page to the start and resets timer
@@ -334,6 +347,19 @@ reset.addEventListener("click", function () {
 });
 
 //Clears scores by clicking clear score button
-clear.addEventListener("click", function () {
-  document.querySelector('.scoreIn').textContent = "";
+clear.addEventListener("click", function (event) {
+  // var element = event.target;
+
+  // // Checks if element is a button
+  // if (element.matches("button") === true) {
+  //   // Get its data-index value and remove the todo element from the list
+  //   var index = element.parentElement.getAttribute("data-index");
+  //   highScores.splice(index, 1);
+
+  //   // Store updated todos in localStorage, re-render the list
+  //   storeScores();
+  //   renderScores();
+  // }
 });
+
+
