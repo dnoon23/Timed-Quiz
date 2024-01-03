@@ -41,7 +41,42 @@ var reset = document.querySelector(".reset-button");
 var clear = document.querySelector(".clear-button");
 var end = document.querySelector(".end");
 
+//sets points to 0 at page load
+var points = 0 ;
 
+var highScore = [];
+
+function renderScore() {
+
+  scoreList.innerHTML = "";
+
+  for (var i = 0; i < highScore.length; i++) {
+    var highScores = highScore[i];
+
+    var li = document.createElement("li");
+    li.textContent = highScores;
+    li.setAttribute("data-index", i);
+
+console.log('hi')
+    scoreList.appendChild(li);
+  }
+}
+
+function init() {
+  var storedScore = JSON.parse(localStorage.getItem("highScore"));
+
+
+  if (storedScore !== null) {
+    highScore = storedScore;
+  }
+
+
+  renderScore();
+}
+
+function storeScore() {
+  localStorage.setItem("highScore", JSON.stringify(highScore));
+}
 
 //Hides all elements other then the start of the game when the page is launched
 questions1.style.display = 'none';
@@ -64,7 +99,7 @@ function setTime() {
     time.textContent = secondsLeft;
 
     //Ends game if timer is 0
-    if (secondsLeft === 0) {
+    if (secondsLeft <= 0) {
       clearInterval(timerInterval);
       questions1.style.display = 'none';
       questions2.style.display = 'none';
@@ -75,8 +110,12 @@ function setTime() {
       correct.style.display = 'none';
       wrong.style.display = 'none';
       timeUp.style.display = 'block';
-      score = secondsLeft;
+      score = 0;
+      points = 0;
+      time.textContent = 0;
       localStorage.setItem("score", score);
+      localStorage.setItem("points", points);
+      document.querySelector('.timeUp').textContent = "You ran out of time and lost all your points";
     }
     //ends game and stores the time when last answer is selected and displays it on the next screen
     else if (a5.addEventListener("click", function () {
@@ -85,7 +124,9 @@ function setTime() {
       score = secondsLeft;
       localStorage.setItem("score", score);
       var scoreTi = localStorage.getItem("score");
-      document.querySelector('.finish').textContent = "Your score was " + scoreTi + " seconds.";
+      localStorage.setItem("points", points);
+      var scorePo = localStorage.getItem("points");
+      document.querySelector('.finish').textContent = "You Scored " + scorePo + " with " + scoreTi + " seconds left.";
     })) { }
     else if (b5.addEventListener("click", function () {
       clearInterval(timerInterval);
@@ -93,7 +134,9 @@ function setTime() {
       score = secondsLeft;
       localStorage.setItem("score", score);
       var scoreTi = localStorage.getItem("score");
-      document.querySelector('.finish').textContent = "Your score was " + scoreTi + " seconds.";
+      localStorage.setItem("points", points);
+      var scorePo = localStorage.getItem("points");
+      document.querySelector('.finish').textContent = "You Scored " + scorePo + " in " + scoreTi + " seconds.";
     })) { }
     else if (c5.addEventListener("click", function () {
       clearInterval(timerInterval);
@@ -101,7 +144,9 @@ function setTime() {
       score = secondsLeft;
       localStorage.setItem("score", score);
       var scoreTi = localStorage.getItem("score");
-      document.querySelector('.finish').textContent = "Your score was " + scoreTi + " seconds.";
+      localStorage.setItem("points", points);
+      var scorePo = localStorage.getItem("points");
+      document.querySelector('.finish').textContent = "You Scored " + scorePo + " in " + scoreTi + " seconds.";
     })) { }
     else if (d5.addEventListener("click", function () {
       clearInterval(timerInterval);
@@ -109,29 +154,36 @@ function setTime() {
       score = secondsLeft;
       localStorage.setItem("score", score);
       var scoreTi = localStorage.getItem("score");
-      document.querySelector('.finish').textContent = "Your score was " + scoreTi + " seconds.";
+      localStorage.setItem("points", points);
+      var scorePo = localStorage.getItem("points");
+      document.querySelector('.finish').textContent = "You Scored " + scorePo + " in " + scoreTi + " seconds.";
     })) { }
   }, 1000);
 
   secondsLeft = 100;
 }
+init();
 
 //Starts the game and reveals the first question
 start.addEventListener("click", function () {
+  storeScore();
+  renderScore();
   start.style.display = 'none';
   instruct.style.display = 'none';
   questions1.style.display = "block";
   timeText.style.display = 'block';
+  correct.textContent = 'CORRECT!!!';
+  wrong.textContent = 'WRONG!!!';
   setTime()
 });
 
-//Question 1 answers.  Tells if answer is right or wrong, hides question 1, reveals question 2, and if answer is wrong subtracts 5 seconds
+//Question 1 answers.  Tells if answer is right or wrong, hides question 1, reveals question 2, if answer is wrong subtracts 5 seconds, and if answer is corret adds a point
 a1.addEventListener("click", function () {
   questions1.style.display = 'none';
   questions2.style.display = 'block';
   correct.style.display = 'block';
   wrong.style.display = 'none';
-
+  points+=1;
 });
 
 b1.addEventListener("click", function () {
@@ -161,7 +213,7 @@ d1.addEventListener("click", function () {
 
 });
 
-//Question 2 answers.  Tells if answer is right or wrong, hides question 2, reveals question 3, and if answer is wrong subtracts 5 seconds
+//Question 2 answers.  Tells if answer is right or wrong, hides question 2, reveals question 3, if answer is wrong subtracts 5 seconds, and if answer is corret adds a point
 a2.addEventListener("click", function () {
   questions2.style.display = 'none';
   questions3.style.display = 'block';
@@ -185,6 +237,7 @@ c2.addEventListener("click", function () {
   questions3.style.display = 'block';
   correct.style.display = 'block';
   wrong.style.display = 'none';
+  points+=1;
 
 });
 
@@ -197,12 +250,13 @@ d2.addEventListener("click", function () {
 
 });
 
-//Question 3 answers.  Tells if answer is right or wrong, hides question 3, reveals question 4, and if answer is wrong subtracts 5 seconds
+//Question 3 answers.  Tells if answer is right or wrong, hides question 3, reveals question 4, if answer is wrong subtracts 5 seconds, and if answer is corret adds a point
 a3.addEventListener("click", function () {
   questions3.style.display = 'none';
   questions4.style.display = 'block';
   correct.style.display = 'block';
   wrong.style.display = 'none';
+  points+=1;
 
 });
 
@@ -233,7 +287,7 @@ d3.addEventListener("click", function () {
 
 });
 
-//Question 4 answers.  Tells if answer is right or wrong, hides question 4, reveals question 5, and if answer is wrong subtracts 5 seconds
+//Question 4 answers.  Tells if answer is right or wrong, hides question 4, reveals question 5, if answer is wrong subtracts 5 seconds, and if answer is corret adds a point
 a4.addEventListener("click", function () {
   questions4.style.display = 'none';
   questions5.style.display = 'block';
@@ -266,16 +320,16 @@ d4.addEventListener("click", function () {
   questions5.style.display = 'block';
   correct.style.display = 'block';
   wrong.style.display = 'none';
+  points+=1;
 
 });
 
-//Question 5 answers.  Tells if answer is right or wrong, hides question 5, reveals results page, and if answer is wrong subtracts 5 seconds
+//Question 5 answers.  Tells if answer is right or wrong, hides question 5, reveals results page, and if answer is corret adds a point
 a5.addEventListener("click", function () {
   questions5.style.display = 'none';
   entry.style.display = 'block';
   correct.style.display = 'none';
   wrong.style.display = 'block';
-  secondsLeft -= 5;
   finish.style.display = 'block';
 
 });
@@ -285,7 +339,6 @@ b5.addEventListener("click", function () {
   entry.style.display = 'block';
   correct.style.display = 'none';
   wrong.style.display = 'block';
-  secondsLeft -= 5;
   finish.style.display = 'block';
 
 });
@@ -296,6 +349,7 @@ c5.addEventListener("click", function () {
   correct.style.display = 'block';
   wrong.style.display = 'none';
   finish.style.display = 'block';
+  points+=1;
 
 });
 
@@ -304,7 +358,6 @@ d5.addEventListener("click", function () {
   entry.style.display = 'block';
   correct.style.display = 'none';
   wrong.style.display = 'block';
-  secondsLeft -= 5;
   finish.style.display = 'block';
 
 });
@@ -316,9 +369,15 @@ scoreButton.addEventListener("click", function (event) {
   localStorage.setItem("initials", initials.value);
   var scoreIn = localStorage.getItem('initials');
   var scoreTi = localStorage.getItem('score');
-  var li = document.createElement("li");
-  li.textContent = scoreIn + ' ' + scoreTi;
-  scoreList.appendChild(li);
+  var scorePo = localStorage.getItem('points');
+  // var li = document.createElement("li");
+  // li.textContent = scoreIn + ' ' + scoreTi;
+  // scoreList.appendChild(li);
+  var storedScore = scoreIn + " " + scorePo + " points in " + scoreTi +" seconds";
+  storedScore.trim();
+  highScore.push(storedScore);
+  storeScore();
+  renderScore();
   correct.style.display = 'none';
   wrong.style.display = 'none';
   entry.style.display = 'none';
@@ -328,6 +387,7 @@ scoreButton.addEventListener("click", function (event) {
   }
   else{
     event.preventDefault();
+    correct.textContent = 'Please enter initials of length of leght 1 to 3 characters';
     wrong.textContent = 'Please enter initials of length of leght 1 to 3 characters';
     return;
   }
@@ -343,23 +403,17 @@ reset.addEventListener("click", function () {
   wrong.style.display = 'none';
   entry.style.display = 'none';
   timeText.style.display = 'none';
+  initials.value = '';
   time.textContent = 100;
+  points = 0;
 });
 
 //Clears scores by clicking clear score button
 clear.addEventListener("click", function (event) {
-  // var element = event.target;
-
-  // // Checks if element is a button
-  // if (element.matches("button") === true) {
-  //   // Get its data-index value and remove the todo element from the list
-  //   var index = element.parentElement.getAttribute("data-index");
-  //   highScores.splice(index, 1);
-
-  //   // Store updated todos in localStorage, re-render the list
-  //   storeScores();
-  //   renderScores();
-  // }
+  event.preventDefault;
+  highScore = [];
+  localStorage.setItem('highScore', highScore)
+  scoreList.innerHTML = "";
 });
 
 
