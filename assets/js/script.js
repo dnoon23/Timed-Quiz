@@ -1,6 +1,6 @@
 //Variables set up to be able to select and alter what is displayed on the webpage
-var start = document.querySelector(".start");
-var instruct = document.querySelector(".intro");
+var start = document.querySelector('.start');
+var instruct = document.querySelector('.intro');
 var questions1 = document.querySelector('.questions1');
 var questions2 = document.querySelector('.questions2');
 var questions3 = document.querySelector('.questions3');
@@ -26,26 +26,27 @@ var a5 = document.querySelector('.a5');
 var b5 = document.querySelector('.b5');
 var c5 = document.querySelector('.c5');
 var d5 = document.querySelector('.d5');
-var time = document.querySelector(".timer-count");
-var correct = document.querySelector(".correct");
-var wrong = document.querySelector(".wrong");
-var finish = document.querySelector(".finish")
-var timeUp = document.querySelector(".timeUp");
-var timeText = document.querySelector(".timer-text");
-var entry = document.querySelector(".entry");
-var initials = document.querySelector(".initials");
-var scoreButton = document.querySelector(".score-button");
-var initialsForm = document.querySelector("#initials-form");
-var scoreList = document.querySelector("#high-score-list");
-var reset = document.querySelector(".reset-button");
-var clear = document.querySelector(".clear-button");
-var end = document.querySelector(".end");
+var time = document.querySelector('.timer-count');
+var correct = document.querySelector('.correct');
+var wrong = document.querySelector('.wrong');
+var finish = document.querySelector('.finish')
+var timeUp = document.querySelector('.timeUp');
+var timeText = document.querySelector('.timer-text');
+var entry = document.querySelector('.entry');
+var initials = document.querySelector('.initials');
+var scoreButton = document.querySelector('.score-button');
+var scoreList = document.querySelector('#high-score-list');
+var reset = document.querySelector('.reset-button');
+var clear = document.querySelector('.clear-button');
+var end = document.querySelector('.end');
 
-//sets points to 0 at page load
-var points = 0 ;
+//Sets points to 0 at page load
+var points = 0;
 
+//Sets an array to store the scores
 var highScore = [];
 
+//Creates a function to list the scores
 function renderScore() {
 
   scoreList.innerHTML = "";
@@ -57,23 +58,22 @@ function renderScore() {
     li.textContent = highScores;
     li.setAttribute("data-index", i);
 
-console.log('hi')
     scoreList.appendChild(li);
   }
 }
 
+//Checks on launch if it needs to populate the score list
 function init() {
   var storedScore = JSON.parse(localStorage.getItem("highScore"));
-
 
   if (storedScore !== null) {
     highScore = storedScore;
   }
 
-
   renderScore();
 }
 
+//Stores scores in local storage
 function storeScore() {
   localStorage.setItem("highScore", JSON.stringify(highScore));
 }
@@ -117,7 +117,7 @@ function setTime() {
       localStorage.setItem("points", points);
       document.querySelector('.timeUp').textContent = "You ran out of time and lost all your points";
     }
-    //ends game and stores the time when last answer is selected and displays it on the next screen
+    //Ends game and stores the time when last answer is selected and displays it on the next screen
     else if (a5.addEventListener("click", function () {
       clearInterval(timerInterval);
       time.textContent = secondsLeft;
@@ -183,7 +183,7 @@ a1.addEventListener("click", function () {
   questions2.style.display = 'block';
   correct.style.display = 'block';
   wrong.style.display = 'none';
-  points+=1;
+  points += 1;
 });
 
 b1.addEventListener("click", function () {
@@ -237,7 +237,7 @@ c2.addEventListener("click", function () {
   questions3.style.display = 'block';
   correct.style.display = 'block';
   wrong.style.display = 'none';
-  points+=1;
+  points += 1;
 
 });
 
@@ -256,7 +256,7 @@ a3.addEventListener("click", function () {
   questions4.style.display = 'block';
   correct.style.display = 'block';
   wrong.style.display = 'none';
-  points+=1;
+  points += 1;
 
 });
 
@@ -320,7 +320,7 @@ d4.addEventListener("click", function () {
   questions5.style.display = 'block';
   correct.style.display = 'block';
   wrong.style.display = 'none';
-  points+=1;
+  points += 1;
 
 });
 
@@ -349,7 +349,7 @@ c5.addEventListener("click", function () {
   correct.style.display = 'block';
   wrong.style.display = 'none';
   finish.style.display = 'block';
-  points+=1;
+  points += 1;
 
 });
 
@@ -364,28 +364,27 @@ d5.addEventListener("click", function () {
 
 //Addes functionality to the results page.  Stores the initials that are entered and displayes the initials paired with the score on the next page
 scoreButton.addEventListener("click", function (event) {
-  if(initials.value != ''){
-  event.preventDefault();
-  localStorage.setItem("initials", initials.value);
-  var scoreIn = localStorage.getItem('initials');
-  var scoreTi = localStorage.getItem('score');
-  var scorePo = localStorage.getItem('points');
-  // var li = document.createElement("li");
-  // li.textContent = scoreIn + ' ' + scoreTi;
-  // scoreList.appendChild(li);
-  var storedScore = scoreIn + " " + scorePo + " points in " + scoreTi +" seconds";
-  storedScore.trim();
-  highScore.push(storedScore);
-  storeScore();
-  renderScore();
-  correct.style.display = 'none';
-  wrong.style.display = 'none';
-  entry.style.display = 'none';
-  timeUp.style.display = 'none';
-  finish.style.display = 'none';
-  end.style.display = 'block';
+  if (initials.value != '') {
+    event.preventDefault();
+
+    localStorage.setItem("initials", initials.value);
+    var scoreIn = localStorage.getItem('initials');
+    var scoreTi = localStorage.getItem('score');
+    var scorePo = localStorage.getItem('points');
+    var storedScore = scoreIn + " " + scorePo + " points in " + scoreTi + " seconds";
+    storedScore.trim();
+    highScore.push(storedScore);
+    storeScore();
+    renderScore();
+
+    correct.style.display = 'none';
+    wrong.style.display = 'none';
+    entry.style.display = 'none';
+    timeUp.style.display = 'none';
+    finish.style.display = 'none';
+    end.style.display = 'block';
   }
-  else{
+  else {
     event.preventDefault();
     correct.textContent = 'Please enter initials of length of leght 1 to 3 characters';
     wrong.textContent = 'Please enter initials of length of leght 1 to 3 characters';
@@ -393,7 +392,7 @@ scoreButton.addEventListener("click", function (event) {
   }
 });
 
-//Addes functionality to the reset button.  Resets the page to the start and resets timer
+//Addes functionality to the reset button.  Resets the page to the start, resets timer, and resets the score
 reset.addEventListener("click", function () {
   start.style.display = 'inline-block';
   instruct.style.display = 'block';
